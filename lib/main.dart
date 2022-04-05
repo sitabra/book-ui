@@ -1,3 +1,4 @@
+import 'package:book_ui/screen/firstscreen.dart';
 import 'package:flutter/material.dart';
 
 import 'homepage.dart';
@@ -14,6 +15,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      initialRoute: 'homepage',
+      routes: {
+        'firstScreen':(context) => const FirstScreen(),
+      },
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
