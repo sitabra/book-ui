@@ -1,3 +1,4 @@
+import 'package:book_ui/screen/secondpage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -12,6 +13,18 @@ class _FirstScreenState extends State<FirstScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
+      bottomNavigationBar: BottomAppBar(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            IconButton(icon: Icon(Icons.home), onPressed: () {}),
+            IconButton(icon: Icon(Icons.book), onPressed: () {}),
+            IconButton(icon: Icon(Icons.bookmark), onPressed: () {}),
+            IconButton(icon: Icon(Icons.doorbell), onPressed: () {}),
+          ],
+        ),
+      ),
       appBar: AppBar(
         leading: const Icon(
           Icons.menu,
@@ -40,6 +53,8 @@ class _FirstScreenState extends State<FirstScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             bookList(),
+            SizedBox(height: 20,),
+            continueReading(),
           ],
         ),
       ),
@@ -48,7 +63,7 @@ class _FirstScreenState extends State<FirstScreen> {
 
   Widget bookList()  {
     return Container(
-      height: 480,
+      height: 470,
       width: double.infinity,
       color: Colors.white,
       child: Column(
@@ -67,11 +82,10 @@ class _FirstScreenState extends State<FirstScreen> {
             padding: const EdgeInsets.all(5.0),
             child: Container(
               color: Colors.white,
-              height: 400,
+              height: 410,
               width: double.infinity,
-              child: ListView.builder(
-                  itemCount: 5,
-                  scrollDirection: Axis.horizontal,
+              child: ListView.separated(
+                scrollDirection: Axis.horizontal,
                   itemBuilder: (context, int index) {
                     return Container(
                       height: 400,
@@ -79,21 +93,32 @@ class _FirstScreenState extends State<FirstScreen> {
                       color: Colors.white,
                       margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Image(image: NetworkImage("https://i.pinimg.com/236x/b1/28/7c/b1287cdbfa6e0cee7d844e6db949b840--jeffers-oliver-stuck-up.jpg",)),
-                          SizedBox(height: 10,),
-                          Text("Galaxy 101",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),),
-                          Text("by Anna", style: TextStyle(color: Colors.grey),),
-                          ListTile(title: Text("4.5"),
-                          trailing: Icon(Icons.star),),
-                        ],
-                      ),
+                        padding: EdgeInsets.symmetric(horizontal: 5, vertical: 1),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(context, MaterialPageRoute(
+                                    builder: (context) => const SecondPage(),
+                                ));
+                              },
+                              child: Image.network("https://marketplace.canva.com/EAD7YHrjZYY/1/0/1003w/canva-blue-illustrated-stars-children%27s-book-cover-haFtaSNXXF4.jpg"),
+                            ),
+                            SizedBox(height: 2,),
+                            Text("Galaxy 101",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),),
+                            Text("by Anna", style: TextStyle(color: Colors.grey),),
+                            ListTile(title: Text("4.5"),
+                              trailing: Icon(Icons.star),),
+                          ],
+                        ),
                       ),
                     );
-                  } ),
+                  },
+                  separatorBuilder: (context, _) => SizedBox(
+                    width: 10,
+                  ),
+                  itemCount: 6)
             ),
           )
         ],
@@ -103,6 +128,59 @@ class _FirstScreenState extends State<FirstScreen> {
 
   Widget continueReading() {
     return Container(
+      color: Colors.white,
+      height: 280,
+      width: double.infinity,
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 5),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                Text("Currently Reading", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
+                Text("See all", style: TextStyle(fontSize: 15, color: Colors.pinkAccent),),
+              ],
+            ),
+          ),
+          Row(
+            children: [
+              const Padding(
+                padding: EdgeInsets.all(10),
+                child: Image(image: NetworkImage(   "https://www.afterglowmedia.com.au/wp-content/uploads/2018/11/HOA.jpg"),
+                height: 200,width: 100,),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children:  [
+                    const Text("Startup 101", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+                    const Text("by Jasmine", style: TextStyle(fontWeight: FontWeight.w200, fontSize: 14),),
+                    Container(
+                      child: Row(
+                        children: [
+                          Container(
+                            height: 10,
+                              width: 120,
+                              alignment: Alignment.topLeft,
+                              margin: const EdgeInsets.all(20),
+                              child: const LinearProgressIndicator(
+                                value: 0.7,
+                                minHeight: 7,
+                              ),
+                          ),
+                          const Text("75%"),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

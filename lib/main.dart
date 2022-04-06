@@ -1,4 +1,5 @@
 import 'package:book_ui/screen/firstscreen.dart';
+import 'package:book_ui/screen/secondpage.dart';
 import 'package:flutter/material.dart';
 
 import 'homepage.dart';
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
       initialRoute: 'homepage',
       routes: {
         'firstScreen':(context) => const FirstScreen(),
+        'secondPage':(context) => const SecondPage(),
       },
       title: 'Flutter Demo',
       theme: ThemeData(
