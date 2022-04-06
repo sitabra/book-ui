@@ -1,3 +1,6 @@
+import 'package:book_ui/screen/listscreen.dart';
+import 'package:book_ui/screen/notificationscreen.dart';
+import 'package:book_ui/screen/savedscreen.dart';
 import 'package:book_ui/screen/secondpage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,13 +18,30 @@ class _FirstScreenState extends State<FirstScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       bottomNavigationBar: BottomAppBar(
+        elevation: 0,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            IconButton(icon: Icon(Icons.home), onPressed: () {}),
-            IconButton(icon: Icon(Icons.book), onPressed: () {}),
-            IconButton(icon: Icon(Icons.bookmark), onPressed: () {}),
-            IconButton(icon: Icon(Icons.doorbell), onPressed: () {}),
+            IconButton(icon: Icon(Icons.home), onPressed: () {
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context) => const FirstScreen(),
+              ));
+            }),
+            IconButton(icon: Icon(Icons.list_alt), onPressed: () {
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context) => const ListScreen(),
+              ));
+            }),
+            IconButton(icon: Icon(Icons.bookmark), onPressed: () {
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context) => const SavedScreen(),
+              ));
+            }),
+            IconButton(icon: Icon(Icons.notifications), onPressed: () {
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context) => const NotificationScreen(),
+              ));
+            }),
           ],
         ),
       ),
@@ -53,8 +73,7 @@ class _FirstScreenState extends State<FirstScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             bookList(),
-            SizedBox(height: 20,),
-            continueReading(),
+            continueReading(context),
           ],
         ),
       ),
@@ -105,20 +124,30 @@ class _FirstScreenState extends State<FirstScreen> {
                               },
                               child: Image.network("https://marketplace.canva.com/EAD7YHrjZYY/1/0/1003w/canva-blue-illustrated-stars-children%27s-book-cover-haFtaSNXXF4.jpg"),
                             ),
-                            SizedBox(height: 2,),
-                            Text("Galaxy 101",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),),
-                            Text("by Anna", style: TextStyle(color: Colors.grey),),
-                            ListTile(title: Text("4.5"),
-                              trailing: Icon(Icons.star),),
+                            const SizedBox(height: 2,),
+                            const Text("Galaxy 101",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text("by Anna", style: TextStyle(color: Colors.grey),),
+                                Row(
+                                  children: const [
+                                    Icon(Icons.star),
+                                    Text("4.5"),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ],
                         ),
                       ),
                     );
                   },
-                  separatorBuilder: (context, _) => SizedBox(
+                  separatorBuilder: (context, _) => const SizedBox(
                     width: 10,
                   ),
-                  itemCount: 6)
+                  itemCount: 6,
+              ),
             ),
           )
         ],
@@ -126,61 +155,100 @@ class _FirstScreenState extends State<FirstScreen> {
     );
   }
 
-  Widget continueReading() {
-    return Container(
-      color: Colors.white,
-      height: 280,
-      width: double.infinity,
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 5),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                Text("Currently Reading", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
-                Text("See all", style: TextStyle(fontSize: 15, color: Colors.pinkAccent),),
-              ],
-            ),
+  Widget continueReading(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Text(
+            'Continue Reading',
+            style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold),
           ),
-          Row(
-            children: [
-              const Padding(
-                padding: EdgeInsets.all(10),
-                child: Image(image: NetworkImage(   "https://www.afterglowmedia.com.au/wp-content/uploads/2018/11/HOA.jpg"),
-                height: 200,width: 100,),
+        ),
+        SizedBox(
+          child: ListView.builder(
+            itemCount: 10,
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemBuilder: (context, index) => Container(
+              width: MediaQuery.of(context).size.width,
+              margin: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
+              padding:
+              const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.shade200,
+                      offset: const Offset(
+                        5.0,
+                        5.0,
+                      ),
+                      blurRadius: 2.0,
+                      spreadRadius: 1.0,
+                    ), //BoxShadow
+                    const BoxShadow(
+                      color: Colors.white,
+                      offset: Offset(0.0, 0.0),
+                      blurRadius: 0.0,
+                      spreadRadius: 0.0,
+                    ), //BoxShadow
+                  ]
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children:  [
-                    const Text("Startup 101", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
-                    const Text("by Jasmine", style: TextStyle(fontWeight: FontWeight.w200, fontSize: 14),),
-                    Container(
-                      child: Row(
-                        children: [
-                          Container(
-                            height: 10,
-                              width: 120,
+              child: Row(
+                children: [
+                  Image.network("https://i.pinimg.com/736x/28/22/cf/2822cf4c154d4ca6a26bf65107750b35.jpg",
+                    height: 100,
+                    width: 100,
+                    fit: BoxFit.contain,),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children:  [
+                      const Text(
+                        "Startup 101",
+                        style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      const Text("by Jasmine",
+                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.w200)),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Container(
+                        width: 150,
+                        color: Colors.white,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Container(
+                              height: 10,
+                              width: 110,
                               alignment: Alignment.topLeft,
-                              margin: const EdgeInsets.all(20),
                               child: const LinearProgressIndicator(
                                 value: 0.7,
                                 minHeight: 7,
                               ),
-                          ),
-                          const Text("75%"),
-                        ],
+                            ),
+                            SizedBox(width: 5,),
+                            const Text("75%"),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                ),
+                    ],
+                  )
+                ],
               ),
-            ],
+            ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
