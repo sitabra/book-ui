@@ -18,12 +18,12 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
 
   final List<String> imageList = [
-    "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/colorful-girl-book-cover-template-design-c637f3dfd17db04bbacda2032a12d1c2_screen.jpg?ts=1637013797"
-    "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/summer-themed-children%27s-book-cover-design-template-8a6ac74063d879df4e8774dc960399b2_screen.jpg?ts=1637012075"
-    "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/book-cover-design-for-children-s-book-flyer-template-de3994c2e8ee0bd3b9f7ffdda08b08ed_screen.jpg?ts=1636976470"
-    "https://d19seqargx6mmp.cloudfront.net/product-images/s_5344.jpg"
-    "https://i.pinimg.com/originals/e8/2f/cc/e82fcc725b3bd2120dd4622370882507.jpg"
-    "https://images.squarespace-cdn.com/content/v1/573bf9761bbee0b32db4e9ff/1606730424152-JWX44X26UAB841Q3CVXE/Copy+of+Mermaid+Story+book+Childrens+Book+Cover.jpg"
+    "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/colorful-girl-book-cover-template-design-c637f3dfd17db04bbacda2032a12d1c2_screen.jpg?ts=1637013797",
+    "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/summer-themed-children%27s-book-cover-design-template-8a6ac74063d879df4e8774dc960399b2_screen.jpg?ts=1637012075",
+    "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/book-cover-design-for-children-s-book-flyer-template-de3994c2e8ee0bd3b9f7ffdda08b08ed_screen.jpg?ts=1636976470",
+    "https://d19seqargx6mmp.cloudfront.net/product-images/s_5344.jpg",
+    "https://i.pinimg.com/originals/e8/2f/cc/e82fcc725b3bd2120dd4622370882507.jpg",
+    "https://images.squarespace-cdn.com/content/v1/573bf9761bbee0b32db4e9ff/1606730424152-JWX44X26UAB841Q3CVXE/Copy+of+Mermaid+Story+book+Childrens+Book+Cover.jpg",
   ];
 
   @override
@@ -96,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
               width: double.infinity,
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, int index) {
+                  itemBuilder: (context, index) {
                     return Container(
                       height: 400,
                       width: 200,
@@ -113,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     builder: (context) => const DetailsScreen(),
                                 ));
                               },
-                              child: Image.network("https://marketplace.canva.com/EAD7YHrjZYY/1/0/1003w/canva-blue-illustrated-stars-children%27s-book-cover-haFtaSNXXF4.jpg"),
+                              child: Image.network(imageList[index]),
                             ),
                             const SizedBox(height: 2,),
                             const Text("Galaxy 101",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),),
