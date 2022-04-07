@@ -22,7 +22,9 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       bottomNavigationBar: NavigationBar(
+        backgroundColor: Colors.white,
         height: 55,
         selectedIndex: index,
         onDestinationSelected: (index) =>

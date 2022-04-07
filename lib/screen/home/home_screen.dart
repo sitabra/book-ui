@@ -34,6 +34,61 @@ class _HomeScreenState extends State<HomeScreen> {
     "https://assets.hongkiat.com/uploads/children-book-covers/chicken-cheeks.jpg",
   ];
 
+  final List<String> bookTitle = [
+    "The New Chapter",
+    "The Heroes of Summer",
+    "Story of the Jungle",
+    "Toy Train Journey",
+    "Once Upon A Time",
+    "Mermaid To Rescue",
+  ];
+
+  final List<String> authorName = [
+    "Jennah Rose",
+    "Norris McDonald",
+    "Anonymous",
+    "Anonymous",
+    "Marthina Smith",
+    "Elizabeth Francis",
+  ];
+
+  final List<String> ratingValue = [
+    "4.5",
+    "4.2",
+    "4.1",
+    "4.7",
+    "4.3",
+    "4.4",
+  ];
+
+  final List<double> progressValue = [
+    0.7,0.6,0.8,0.7,0.3,
+  ];
+
+  final List<String> continueTitle = [
+    "Journey To The Stars",
+    "Sam and Pam",
+    "STARGAZING",
+    "The Boy at the Back of the Class",
+    "Chicken Cheeks",
+  ];
+
+  final List<String> percentageValue = [
+    "70 %",
+    "60 %",
+    "80 %",
+    "70 %",
+    "30 %",
+  ];
+
+  final List<String> continueAuthor = [
+    "Matt Zhang",
+    "Iris Grade",
+    "Jen Wang",
+    "Onjali Q Rauf",
+    "Mitchel  lan Black",
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -102,7 +157,7 @@ class _HomeScreenState extends State<HomeScreen> {
               color: Colors.white,
               height: 410,
               width: double.infinity,
-              child: ListView.separated(
+              child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
                     return Container(
@@ -121,20 +176,29 @@ class _HomeScreenState extends State<HomeScreen> {
                                     builder: (context) => const DetailsScreen(),
                                 ));
                               },
-                              child: Image.network(imageList[index],
+                              child: Container(
                                 height: 300,
-                              width: 200,),
+                                width: 200,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: Image.network(imageList[index],fit: BoxFit.cover,
+                                    ),
+                                ),
+                              ),
                             ),
                             const SizedBox(height: 2,),
-                            const Text("Galaxy 101",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),),
+                            Text(bookTitle[index],style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17),),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                const Text("by Anna", style: TextStyle(color: Colors.grey),),
+                                Text(authorName[index], style: const TextStyle(color: Colors.grey),),
                                 Row(
-                                  children: const [
-                                    Icon(Icons.star),
-                                    Text("4.5"),
+                                  children: [
+                                    const Icon(Icons.star),
+                                    Text(ratingValue[index]),
                                   ],
                                 ),
                               ],
@@ -144,9 +208,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     );
                   },
-                  separatorBuilder: (context, _) => const SizedBox(
-                    width: 10,
-                  ),
+
                   itemCount: 6,
               ),
             ),
@@ -200,24 +262,33 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               child: Row(
                 children: [
-                  Image.network(listImage[index],
-                  height: 100,
-                  width: 80,),
+                  Container(
+                    height: 100,
+                    width: 80,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.network(listImage[index],fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
                   const SizedBox(
                     width: 10,
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children:  [
-                      const Text(
-                        "Startup 101",
-                        style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),
+                      Text(
+                        continueTitle[index],
+                        style: const TextStyle(fontSize: 15,fontWeight: FontWeight.w400),
                       ),
                       const SizedBox(
                         height: 5,
                       ),
-                      const Text("by Jasmine",
-                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.w200)),
+                      Text(continueAuthor[index],
+                          style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w200)),
                       const SizedBox(
                         height: 5,
                       ),
@@ -231,13 +302,13 @@ class _HomeScreenState extends State<HomeScreen> {
                               height: 10,
                               width: 110,
                               alignment: Alignment.topLeft,
-                              child: const LinearProgressIndicator(
-                                value: 0.7,
+                              child: LinearProgressIndicator(
+                                value: progressValue[index],
                                 minHeight: 7,
                               ),
                             ),
-                            SizedBox(width: 5,),
-                            const Text("75%"),
+                            const SizedBox(width: 5,),
+                            Text(percentageValue[index]),
                           ],
                         ),
                       ),
