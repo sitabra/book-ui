@@ -26,6 +26,14 @@ class _HomeScreenState extends State<HomeScreen> {
     "https://images.squarespace-cdn.com/content/v1/573bf9761bbee0b32db4e9ff/1606730424152-JWX44X26UAB841Q3CVXE/Copy+of+Mermaid+Story+book+Childrens+Book+Cover.jpg",
   ];
 
+  final List<String> listImage = [
+    "https://marketplace.canva.com/EAD7YHrjZYY/1/0/1003w/canva-blue-illustrated-stars-children%27s-book-cover-haFtaSNXXF4.jpg",
+    "https://i.pinimg.com/736x/28/22/cf/2822cf4c154d4ca6a26bf65107750b35.jpg",
+    "https://getcovers.com/wp-content/uploads/2020/12/image22.jpg",
+    "https://blog-cdn.reedsy.com/uploads/2019/12/boy-at-the-back.jpg",
+    "https://assets.hongkiat.com/uploads/children-book-covers/chicken-cheeks.jpg",
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: Colors.white,
                       margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
                       child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 5, vertical: 1),
+                        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -113,7 +121,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                     builder: (context) => const DetailsScreen(),
                                 ));
                               },
-                              child: Image.network(imageList[index]),
+                              child: Image.network(imageList[index],
+                                height: 300,
+                              width: 200,),
                             ),
                             const SizedBox(height: 2,),
                             const Text("Galaxy 101",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),),
@@ -159,7 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         SizedBox(
           child: ListView.builder(
-            itemCount: 10,
+            itemCount: 5,
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemBuilder: (context, index) => Container(
@@ -190,14 +200,9 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               child: Row(
                 children: [
-                  Container(
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: NetworkImage("https://i.pinimg.com/736x/28/22/cf/2822cf4c154d4ca6a26bf65107750b35.jpg"),
-                        fit: BoxFit.contain,
-                      )
-                    ),
-                  ),
+                  Image.network(listImage[index],
+                  height: 100,
+                  width: 80,),
                   const SizedBox(
                     width: 10,
                   ),
