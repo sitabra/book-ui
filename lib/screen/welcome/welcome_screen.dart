@@ -1,15 +1,16 @@
-import 'package:book_ui/screen/firstscreen.dart';
+import 'package:book_ui/screen/bottom_navigation_screen.dart';
+import 'package:book_ui/screen/home/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key, required String title}) : super(key: key);
+class WelcomeScreen extends StatefulWidget {
+  const WelcomeScreen({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<WelcomeScreen> createState() => _WelcomeScreenState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,13 +18,14 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.pink.shade300,
         child: const Icon(Icons.play_circle_fill_rounded),
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(
-              builder: (context) => const FirstScreen(),
-          ));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const BottomNavigationScreen(),
+              ));
         },
       ),
-      floatingActionButtonLocation:
-          FloatingActionButtonLocation.centerDocked,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: Container(
         decoration: const BoxDecoration(
             color: Colors.white,
@@ -69,14 +71,15 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             TextButton(
-              onPressed: () {
-              },
-              child: const Text("Back", style: TextStyle(color: Colors.white),),
+              onPressed: () {},
+              child: const Text(
+                "Back",
+                style: TextStyle(color: Colors.white),
+              ),
             ),
           ],
         ),
       ),
     );
   }
-
 }

@@ -1,50 +1,41 @@
-import 'package:book_ui/screen/listscreen.dart';
-import 'package:book_ui/screen/notificationscreen.dart';
-import 'package:book_ui/screen/savedscreen.dart';
-import 'package:book_ui/screen/secondpage.dart';
+import 'package:book_ui/screen/article/article.dart';
+import 'package:book_ui/screen/bookmark/bookmark.dart';
+import 'package:book_ui/screen/notification/notification.dart';
+import 'package:book_ui/screen/book_details/details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-class FirstScreen extends StatefulWidget {
-  const FirstScreen({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
 
   @override
-  State<FirstScreen> createState() => _FirstScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
+
+
 }
 
-class _FirstScreenState extends State<FirstScreen> {
+class _HomeScreenState extends State<HomeScreen> {
+
+  final List<String> imageList = [
+    "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/colorful-girl-book-cover-template-design-c637f3dfd17db04bbacda2032a12d1c2_screen.jpg?ts=1637013797"
+    "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/summer-themed-children%27s-book-cover-design-template-8a6ac74063d879df4e8774dc960399b2_screen.jpg?ts=1637012075"
+    "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/book-cover-design-for-children-s-book-flyer-template-de3994c2e8ee0bd3b9f7ffdda08b08ed_screen.jpg?ts=1636976470"
+    "https://d19seqargx6mmp.cloudfront.net/product-images/s_5344.jpg"
+    "https://i.pinimg.com/originals/e8/2f/cc/e82fcc725b3bd2120dd4622370882507.jpg"
+    "https://images.squarespace-cdn.com/content/v1/573bf9761bbee0b32db4e9ff/1606730424152-JWX44X26UAB841Q3CVXE/Copy+of+Mermaid+Story+book+Childrens+Book+Cover.jpg"
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      bottomNavigationBar: BottomAppBar(
-        elevation: 0,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            IconButton(icon: Icon(Icons.home), onPressed: () {
-              Navigator.push(context, MaterialPageRoute(
-                builder: (context) => const FirstScreen(),
-              ));
-            }),
-            IconButton(icon: Icon(Icons.list_alt), onPressed: () {
-              Navigator.push(context, MaterialPageRoute(
-                builder: (context) => const ListScreen(),
-              ));
-            }),
-            IconButton(icon: Icon(Icons.bookmark), onPressed: () {
-              Navigator.push(context, MaterialPageRoute(
-                builder: (context) => const SavedScreen(),
-              ));
-            }),
-            IconButton(icon: Icon(Icons.notifications), onPressed: () {
-              Navigator.push(context, MaterialPageRoute(
-                builder: (context) => const NotificationScreen(),
-              ));
-            }),
-          ],
+     /* bottomNavigationBar: NavigationBarTheme(
+        data: NavigationBarThemeData(
+          indicatorColor: Colors.blueAccent.shade200
         ),
-      ),
+        child:
+      ),*/
       appBar: AppBar(
         leading: const Icon(
           Icons.menu,
@@ -119,7 +110,7 @@ class _FirstScreenState extends State<FirstScreen> {
                             InkWell(
                               onTap: () {
                                 Navigator.push(context, MaterialPageRoute(
-                                    builder: (context) => const SecondPage(),
+                                    builder: (context) => const DetailsScreen(),
                                 ));
                               },
                               child: Image.network("https://marketplace.canva.com/EAD7YHrjZYY/1/0/1003w/canva-blue-illustrated-stars-children%27s-book-cover-haFtaSNXXF4.jpg"),
@@ -199,10 +190,14 @@ class _FirstScreenState extends State<FirstScreen> {
               ),
               child: Row(
                 children: [
-                  Image.network("https://i.pinimg.com/736x/28/22/cf/2822cf4c154d4ca6a26bf65107750b35.jpg",
-                    height: 100,
-                    width: 100,
-                    fit: BoxFit.contain,),
+                  Container(
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: NetworkImage("https://i.pinimg.com/736x/28/22/cf/2822cf4c154d4ca6a26bf65107750b35.jpg"),
+                        fit: BoxFit.contain,
+                      )
+                    ),
+                  ),
                   const SizedBox(
                     width: 10,
                   ),
